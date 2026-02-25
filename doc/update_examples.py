@@ -4,6 +4,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import TypeAlias
 
+import m2r2
+
 # --- Type Aliases ---
 # Represents the parsed JSON: mapping entry names to their metadata dictionaries
 RawEntries: TypeAlias = dict[str, dict[str, str]]
@@ -117,7 +119,7 @@ def process_entries(entries_json: RawEntries) -> tuple[list[str], SubTopicMap]:
                     {
                         "name": name,
                         "url": f"{REPO_BASE_URL}{location}",
-                        "description": entry.get("content", ""),
+                        "description": m2r2.convert(entry.get("content", "")),
                     }
                 )
 
@@ -186,4 +188,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    main()
     main()
